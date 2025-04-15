@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <style>
+        .error-message { color: red; font-size: 0.8em; }
+        .form-group { margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <form id="registerForm">
+        <div class="form-group">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" required>
+            <div id="nomError" class="error-message"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" required>
+            <div id="prenomError" class="error-message"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email :</label>
+            <input type="email" id="email" required>
+            <div id="emailError" class="error-message"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" required minlength="8">
+            <div id="passwordError" class="error-message"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="adresse">Adresse :</label>
+            <input type="text" id="adresse" required>
+            <div id="adresseError" class="error-message"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="codepostal">Code postal :</label>
+            <input type="text" id="codepostal" required>
+            <div id="codepostalError" class="error-message"></div>
+        </div>
+
+        <button type="submit">S'inscrire</button>
+    </form>
+
+    <script>
+        // Validation générique
+        function validateField(inputId, regex, errorId, errorMessage) {
+            const input = document.getElementById(inputId);
+            const errorElement = document.getElementById(errorId);
+            
+            input.addEventListener('input', () => {
+                if (!regex.test(input.value)) {
+                    errorElement.textContent = errorMessage;
+                } else {
+                    errorElement.textContent = '';
+                }
+            });
+        }
+
+        // Validations
+        validateField('nom', /^[A-Za-zÀ-ÿ- ]{2,}$/, 'nomError', '2 caractères minimum');
+        validateField('prenom', /^[A-Za-zÀ-ÿ- ]{2,}$/, 'prenomError', '2 caractères minimum');
+        validateField('email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'emailError', 'Email invalide');
+        validateField('password', /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/, 'passwordError', 'Majuscule + chiffre + 8 caractères');
+        validateField('adresse', /^.{5,}$/, 'adresseError', '5 caractères minimum');
+        validateField('codepostal', /^[0-9]{5}$/, 'codepostalError', '5 chiffres requis');
+
+        // Validation finale
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            const fieldsValid = [
+                /^[A-Za-zÀ-ÿ- ]{2,}$/.test(document.getElementById('nom').value),
+                /^[A-Za-zÀ-ÿ- ]{2,}$/.test(document.getElementById('prenom').value),
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value),
+                /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/.test(document.getElementById('password').value),
+                /^.{5,}$/.test(document.getElementById('adresse').value),
+                /^[0-9]{5}$/.test(document.getElementById('codepostal').value)
+            ];
+
+            if (fieldsValid.includes(false)) {
+                e.preventDefault();
+                alert('Veuillez corriger les erreurs');
+            }
+        });
+    </script>
+</body>
+</html>
