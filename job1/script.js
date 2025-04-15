@@ -1,10 +1,11 @@
-$(document).ready(function () {
-    $('#afficher').click(function () {
-      $('#citation').show();
-    });
-  
-    $('#cacher').click(function () {
-      $('#citation').hide();
-    });
+document.getElementById("button").addEventListener("click", () => {
+    fetch("expression.txt")
+      .then(response => response.text())
+      .then(data => {
+        const p = document.createElement("p");
+        p.textContent = data;
+        document.body.appendChild(p);
+      })
+      .catch(error => console.error("Erreur :", error));
   });
   
