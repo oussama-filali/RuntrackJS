@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job 02 - jQuery</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script.js" defer></script>
+  <style>
+    #rainbow { display: flex; flex-wrap: wrap; width: 360px; }
+    #rainbow img { width: 120px; height: auto; cursor: pointer; }
+    #result { margin-top: 20px; font-size: 1.2em; }
+  </style>
+</head>
+<body>
+
+  <button id="melanger">Mélanger</button>
+  <div id="rainbow">
+    <img src="arc1.png" data-id="1"  alt="Arc en ciel 6">
+    <img src="arc2.png" data-id="2"  alt="Arc en ciel 6">
+    <img src="arc3.png" data-id="3"  alt="Arc en ciel 6">
+    <img src="arc4.png" data-id="4"  alt="Arc en ciel 6">
+    <img src="arc5.png" data-id="5"  alt="Arc en ciel 6">
+    <img src="arc6.png" data-id="6"  alt="Arc en ciel 6">
+  </div>
+
+  <div id="result"></div>
+
+</body>
+</html>
